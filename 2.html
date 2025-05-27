@@ -1,0 +1,193 @@
+
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Dados da Agricultura Familiar do Ceará - 2017</title>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background-color: #fafafa;
+      color: #222;
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 70px;
+    }
+    .tab {
+      display: none;
+    }
+    .tab-buttons {
+      margin-bottom: 20px;
+    }
+    .tab-buttons button {
+      background-color: #ddd;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-right: 5px;
+      font-weight: bold;
+    }
+    .tab-buttons button.active {
+      background-color: #2980b9;
+      color: white;
+    }
+    table.dataTable {
+      border-collapse: separate !important;
+      border-spacing: 0 6px;
+      background-color: white;
+      box-shadow: 0 1px 3px rgb(0 0 0 / 0.06);
+      width: 100%;
+    }
+    table.dataTable thead th {
+      background-color: transparent;
+      color: #555;
+      font-weight: 600;
+      padding: 8px 15px;
+      border: none !important;
+    }
+    table.dataTable thead th.num,
+    table.dataTable tbody td.num {
+      text-align: right !important;
+    }
+    table.dataTable thead th:not(.num),
+    table.dataTable tbody td:not(.num) {
+      text-align: left !important;
+    }
+    table.dataTable tbody td {
+      padding: 8px 15px;
+      border: none !important;
+      vertical-align: middle;
+    }
+    table.dataTable tbody tr {
+      background-color: #fff;
+      box-shadow: 0 0.5px 2px rgb(0 0 0 / 0.04);
+      margin-bottom: 6px;
+      display: table-row;
+    }
+    table.dataTable tbody tr:hover {
+      background-color: #f0f4ff;
+    }
+    div.dataTables_wrapper .dataTables_filter {
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    div.dataTables_wrapper .dataTables_filter input {
+      border: 1px solid #ccc;
+      padding: 6px 12px;
+      border-radius: 0 !important;
+      margin-left: 0.5em;
+      font-size: 14px;
+      width: 250px;
+    }
+    div.dataTables_wrapper .dataTables_paginate,
+    div.dataTables_wrapper .dataTables_info,
+    div.dataTables_wrapper .dataTables_length {
+      display: none;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 36px;
+      background-color: #f0f0f0;
+      color: #555;
+      font-size: 13px;
+      line-height: 36px;
+      text-align: center;
+      border-top: 1px solid #ddd;
+      z-index: 9999;
+    }
+    #download-excel {
+      position: fixed;
+      bottom: 44px;
+      right: 20px;
+      padding: 6px 12px;
+      font-size: 12px;
+      border-radius: 0;
+      cursor: pointer;
+      background-color: #2980b9;
+      color: white;
+      border: none;
+      opacity: 0.75;
+      transition: opacity 0.3s ease;
+      z-index: 10000;
+    }
+    #download-excel:hover {
+      opacity: 1;
+      background-color: #1f5d85;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<h2>Dados da Agricultura Familiar do Ceará - 2017</h2>
+<h4 style="color: #555; margin-top: -10px;">Número de estabelecimentos com área e área total</h4>
+
+<div class="tab-buttons">
+  <button onclick="showTab('tab1', this)" class="active">Municípios</button>
+  <button onclick="showTab('tab2', this)">Regiões de Planejamento</button>
+</div>
+
+<div id="tab1" class="tab" style="display:block;">
+  <table id="table1" class="display dataTable" cellspacing="0" width="100%"><thead><tr><th>Município</th><th>Região de Planejamento</th><th class="num">Estabelecimentos (Unidades)</th><th class="num">Área (Hectares)</th></tr></thead><tbody><tr><td>Abaiara</td><td>Cariri</td><td class="num" data-order="494">494</td><td class="num" data-order="4390">4.390</td></tr><tr><td>Acarape</td><td>Maciço de Baturité</td><td class="num" data-order="370">370</td><td class="num" data-order="1697">1.697</td></tr><tr><td>Acaraú</td><td>Litoral Norte</td><td class="num" data-order="3757">3.757</td><td class="num" data-order="10322">10.322</td></tr><tr><td>Acopiara</td><td>Centro Sul</td><td class="num" data-order="4071">4.071</td><td class="num" data-order="73239">73.239</td></tr><tr><td>Aiuaba</td><td>Sertão dos Inhamuns</td><td class="num" data-order="1934">1.934</td><td class="num" data-order="84549">84.549</td></tr><tr><td>Alcântaras</td><td>Sertão de Sobral</td><td class="num" data-order="488">488</td><td class="num" data-order="1946">1.946</td></tr><tr><td>Altaneira</td><td>Cariri</td><td class="num" data-order="387">387</td><td class="num" data-order="2955">2.955</td></tr><tr><td>Alto Santo</td><td>Vale do Jaguaribe</td><td class="num" data-order="916">916</td><td class="num" data-order="23791">23.791</td></tr><tr><td>Amontada</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="3023">3.023</td><td class="num" data-order="27946">27.946</td></tr><tr><td>Antonina do Norte</td><td>Cariri</td><td class="num" data-order="278">278</td><td class="num" data-order="5738">5.738</td></tr><tr><td>Apuiarés</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="1030">1.030</td><td class="num" data-order="14064">14.064</td></tr><tr><td>Aquiraz</td><td>Grande Fortaleza</td><td class="num" data-order="2029">2.029</td><td class="num" data-order="2211">2.211</td></tr><tr><td>Aracati</td><td>Litoral Leste</td><td class="num" data-order="1976">1.976</td><td class="num" data-order="16846">16.846</td></tr><tr><td>Aracoiaba</td><td>Maciço de Baturité</td><td class="num" data-order="1718">1.718</td><td class="num" data-order="12997">12.997</td></tr><tr><td>Ararendá</td><td>Sertão de Crateús</td><td class="num" data-order="1194">1.194</td><td class="num" data-order="9533">9.533</td></tr><tr><td>Araripe</td><td>Cariri</td><td class="num" data-order="1817">1.817</td><td class="num" data-order="20544">20.544</td></tr><tr><td>Aratuba</td><td>Maciço de Baturité</td><td class="num" data-order="1176">1.176</td><td class="num" data-order="4001">4.001</td></tr><tr><td>Arneiroz</td><td>Sertão dos Inhamuns</td><td class="num" data-order="918">918</td><td class="num" data-order="49694">49.694</td></tr><tr><td>Assaré</td><td>Cariri</td><td class="num" data-order="1892">1.892</td><td class="num" data-order="37886">37.886</td></tr><tr><td>Aurora</td><td>Cariri</td><td class="num" data-order="2074">2.074</td><td class="num" data-order="32127">32.127</td></tr><tr><td>Baixio</td><td>Centro Sul</td><td class="num" data-order="602">602</td><td class="num" data-order="6958">6.958</td></tr><tr><td>Banabuiú</td><td>Sertão Central</td><td class="num" data-order="936">936</td><td class="num" data-order="26882">26.882</td></tr><tr><td>Barbalha</td><td>Cariri</td><td class="num" data-order="1568">1.568</td><td class="num" data-order="4563">4.563</td></tr><tr><td>Barreira</td><td>Maciço de Baturité</td><td class="num" data-order="1343">1.343</td><td class="num" data-order="9695">9.695</td></tr><tr><td>Barro</td><td>Cariri</td><td class="num" data-order="1430">1.430</td><td class="num" data-order="19162">19.162</td></tr><tr><td>Barroquinha</td><td>Litoral Norte</td><td class="num" data-order="668">668</td><td class="num" data-order="784">784</td></tr><tr><td>Baturité</td><td>Maciço de Baturité</td><td class="num" data-order="1403">1.403</td><td class="num" data-order="6532">6.532</td></tr><tr><td>Beberibe</td><td>Litoral Leste</td><td class="num" data-order="2755">2.755</td><td class="num" data-order="21475">21.475</td></tr><tr><td>Bela Cruz</td><td>Litoral Norte</td><td class="num" data-order="2167">2.167</td><td class="num" data-order="17338">17.338</td></tr><tr><td>Boa Viagem</td><td>Sertão de Canindé</td><td class="num" data-order="4743">4.743</td><td class="num" data-order="88039">88.039</td></tr><tr><td>Brejo Santo</td><td>Cariri</td><td class="num" data-order="1334">1.334</td><td class="num" data-order="10293">10.293</td></tr><tr><td>Camocim</td><td>Litoral Norte</td><td class="num" data-order="1818">1.818</td><td class="num" data-order="4986">4.986</td></tr><tr><td>Campos Sales</td><td>Cariri</td><td class="num" data-order="1873">1.873</td><td class="num" data-order="27478">27.478</td></tr><tr><td>Canindé</td><td>Sertão de Canindé</td><td class="num" data-order="4423">4.423</td><td class="num" data-order="39992">39.992</td></tr><tr><td>Capistrano</td><td>Maciço de Baturité</td><td class="num" data-order="1799">1.799</td><td class="num" data-order="9848">9.848</td></tr><tr><td>Caridade</td><td>Sertão de Canindé</td><td class="num" data-order="995">995</td><td class="num" data-order="8016">8.016</td></tr><tr><td>Cariré</td><td>Sertão de Sobral</td><td class="num" data-order="1284">1.284</td><td class="num" data-order="7654">7.654</td></tr><tr><td>Caririaçu</td><td>Cariri</td><td class="num" data-order="1963">1.963</td><td class="num" data-order="15719">15.719</td></tr><tr><td>Cariús</td><td>Centro Sul</td><td class="num" data-order="2331">2.331</td><td class="num" data-order="23119">23.119</td></tr><tr><td>Carnaubal</td><td>Serra da Ibiapaba</td><td class="num" data-order="689">689</td><td class="num" data-order="1227">1.227</td></tr><tr><td>Cascavel</td><td>Grande Fortaleza</td><td class="num" data-order="2085">2.085</td><td class="num" data-order="14150">14.150</td></tr><tr><td>Catarina</td><td>Centro Sul</td><td class="num" data-order="610">610</td><td class="num" data-order="20041">20.041</td></tr><tr><td>Catunda</td><td>Sertão de Crateús</td><td class="num" data-order="741">741</td><td class="num" data-order="15837">15.837</td></tr><tr><td>Caucaia</td><td>Grande Fortaleza</td><td class="num" data-order="1649">1.649</td><td class="num" data-order="4221">4.221</td></tr><tr><td>Cedro</td><td>Centro Sul</td><td class="num" data-order="1908">1.908</td><td class="num" data-order="21106">21.106</td></tr><tr><td>Chaval</td><td>Litoral Norte</td><td class="num" data-order="397">397</td><td class="num" data-order="538">538</td></tr><tr><td>Choró</td><td>Sertão Central</td><td class="num" data-order="1532">1.532</td><td class="num" data-order="14701">14.701</td></tr><tr><td>Chorozinho</td><td>Grande Fortaleza</td><td class="num" data-order="1234">1.234</td><td class="num" data-order="10973">10.973</td></tr><tr><td>Coreaú</td><td>Sertão de Sobral</td><td class="num" data-order="1097">1.097</td><td class="num" data-order="12808">12.808</td></tr><tr><td>Crateús</td><td>Sertão de Crateús</td><td class="num" data-order="4932">4.932</td><td class="num" data-order="75395">75.395</td></tr><tr><td>Crato</td><td>Cariri</td><td class="num" data-order="2085">2.085</td><td class="num" data-order="8608">8.608</td></tr><tr><td>Croatá</td><td>Serra da Ibiapaba</td><td class="num" data-order="1585">1.585</td><td class="num" data-order="7457">7.457</td></tr><tr><td>Cruz</td><td>Litoral Norte</td><td class="num" data-order="1089">1.089</td><td class="num" data-order="7719">7.719</td></tr><tr><td>Deputado Irapuan Pinheiro</td><td>Sertão Central</td><td class="num" data-order="1168">1.168</td><td class="num" data-order="19445">19.445</td></tr><tr><td>Ereré</td><td>Vale do Jaguaribe</td><td class="num" data-order="430">430</td><td class="num" data-order="10503">10.503</td></tr><tr><td>Eusébio</td><td>Grande Fortaleza</td><td class="num" data-order="119">119</td><td class="num" data-order="112">112</td></tr><tr><td>Farias Brito</td><td>Cariri</td><td class="num" data-order="1537">1.537</td><td class="num" data-order="15739">15.739</td></tr><tr><td>Forquilha</td><td>Sertão de Sobral</td><td class="num" data-order="582">582</td><td class="num" data-order="9532">9.532</td></tr><tr><td>Fortaleza</td><td>Grande Fortaleza</td><td class="num" data-order="184">184</td><td class="num" data-order="103">103</td></tr><tr><td>Fortim</td><td>Litoral Leste</td><td class="num" data-order="417">417</td><td class="num" data-order="2012">2.012</td></tr><tr><td>Frecheirinha</td><td>Sertão de Sobral</td><td class="num" data-order="647">647</td><td class="num" data-order="2909">2.909</td></tr><tr><td>General Sampaio</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="339">339</td><td class="num" data-order="3228">3.228</td></tr><tr><td>Graça</td><td>Sertão de Sobral</td><td class="num" data-order="1324">1.324</td><td class="num" data-order="6803">6.803</td></tr><tr><td>Granja</td><td>Litoral Norte</td><td class="num" data-order="3703">3.703</td><td class="num" data-order="22603">22.603</td></tr><tr><td>Granjeiro</td><td>Cariri</td><td class="num" data-order="466">466</td><td class="num" data-order="2776">2.776</td></tr><tr><td>Groaíras</td><td>Sertão de Sobral</td><td class="num" data-order="561">561</td><td class="num" data-order="5283">5.283</td></tr><tr><td>Guaiúba</td><td>Grande Fortaleza</td><td class="num" data-order="823">823</td><td class="num" data-order="3530">3.530</td></tr><tr><td>Guaraciaba do Norte</td><td>Serra da Ibiapaba</td><td class="num" data-order="1721">1.721</td><td class="num" data-order="8515">8.515</td></tr><tr><td>Guaramiranga</td><td>Maciço de Baturité</td><td class="num" data-order="82">82</td><td class="num" data-order="585">585</td></tr><tr><td>Hidrolândia</td><td>Sertão de Crateús</td><td class="num" data-order="1752">1.752</td><td class="num" data-order="37932">37.932</td></tr><tr><td>Horizonte</td><td>Grande Fortaleza</td><td class="num" data-order="580">580</td><td class="num" data-order="2947">2.947</td></tr><tr><td>Ibaretama</td><td>Sertão Central</td><td class="num" data-order="1314">1.314</td><td class="num" data-order="25767">25.767</td></tr><tr><td>Ibiapina</td><td>Serra da Ibiapaba</td><td class="num" data-order="1332">1.332</td><td class="num" data-order="6685">6.685</td></tr><tr><td>Ibicuitinga</td><td>Sertão Central</td><td class="num" data-order="823">823</td><td class="num" data-order="14056">14.056</td></tr><tr><td>Icapuí</td><td>Litoral Leste</td><td class="num" data-order="798">798</td><td class="num" data-order="3563">3.563</td></tr><tr><td>Icó</td><td>Centro Sul</td><td class="num" data-order="4250">4.250</td><td class="num" data-order="37143">37.143</td></tr><tr><td>Iguatu</td><td>Centro Sul</td><td class="num" data-order="2753">2.753</td><td class="num" data-order="23914">23.914</td></tr><tr><td>Independência</td><td>Sertão de Crateús</td><td class="num" data-order="2789">2.789</td><td class="num" data-order="89977">89.977</td></tr><tr><td>Ipaporanga</td><td>Sertão de Crateús</td><td class="num" data-order="1286">1.286</td><td class="num" data-order="17233">17.233</td></tr><tr><td>Ipaumirim</td><td>Centro Sul</td><td class="num" data-order="903">903</td><td class="num" data-order="7893">7.893</td></tr><tr><td>Ipu</td><td>Serra da Ibiapaba</td><td class="num" data-order="2114">2.114</td><td class="num" data-order="10592">10.592</td></tr><tr><td>Ipueiras</td><td>Sertão de Crateús</td><td class="num" data-order="2837">2.837</td><td class="num" data-order="22420">22.420</td></tr><tr><td>Iracema</td><td>Vale do Jaguaribe</td><td class="num" data-order="544">544</td><td class="num" data-order="20601">20.601</td></tr><tr><td>Irauçuba</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="966">966</td><td class="num" data-order="17863">17.863</td></tr><tr><td>Itaiçaba</td><td>Litoral Leste</td><td class="num" data-order="524">524</td><td class="num" data-order="3872">3.872</td></tr><tr><td>Itaitinga</td><td>Grande Fortaleza</td><td class="num" data-order="365">365</td><td class="num" data-order="611">611</td></tr><tr><td>Itapajé</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="983">983</td><td class="num" data-order="6011">6.011</td></tr><tr><td>Itapipoca</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="5432">5.432</td><td class="num" data-order="39839">39.839</td></tr><tr><td>Itapiúna</td><td>Maciço de Baturité</td><td class="num" data-order="1875">1.875</td><td class="num" data-order="10332">10.332</td></tr><tr><td>Itarema</td><td>Litoral Norte</td><td class="num" data-order="1737">1.737</td><td class="num" data-order="9894">9.894</td></tr><tr><td>Itatira</td><td>Sertão de Canindé</td><td class="num" data-order="1749">1.749</td><td class="num" data-order="15508">15.508</td></tr><tr><td>Jaguaretama</td><td>Vale do Jaguaribe</td><td class="num" data-order="1579">1.579</td><td class="num" data-order="67513">67.513</td></tr><tr><td>Jaguaribara</td><td>Vale do Jaguaribe</td><td class="num" data-order="849">849</td><td class="num" data-order="8443">8.443</td></tr><tr><td>Jaguaribe</td><td>Vale do Jaguaribe</td><td class="num" data-order="1729">1.729</td><td class="num" data-order="33288">33.288</td></tr><tr><td>Jaguaruana</td><td>Litoral Leste</td><td class="num" data-order="1435">1.435</td><td class="num" data-order="13717">13.717</td></tr><tr><td>Jardim</td><td>Cariri</td><td class="num" data-order="1792">1.792</td><td class="num" data-order="11394">11.394</td></tr><tr><td>Jati</td><td>Cariri</td><td class="num" data-order="399">399</td><td class="num" data-order="4900">4.900</td></tr><tr><td>Jijoca de Jericoacoara</td><td>Litoral Norte</td><td class="num" data-order="751">751</td><td class="num" data-order="3506">3.506</td></tr><tr><td>Juazeiro do Norte</td><td>Cariri</td><td class="num" data-order="584">584</td><td class="num" data-order="1611">1.611</td></tr><tr><td>Jucás</td><td>Centro Sul</td><td class="num" data-order="1428">1.428</td><td class="num" data-order="28926">28.926</td></tr><tr><td>Lavras da Mangabeira</td><td>Cariri</td><td class="num" data-order="2225">2.225</td><td class="num" data-order="22763">22.763</td></tr><tr><td>Limoeiro do Norte</td><td>Vale do Jaguaribe</td><td class="num" data-order="1197">1.197</td><td class="num" data-order="7249">7.249</td></tr><tr><td>Madalena</td><td>Sertão de Canindé</td><td class="num" data-order="1358">1.358</td><td class="num" data-order="19878">19.878</td></tr><tr><td>Maracanaú</td><td>Grande Fortaleza</td><td class="num" data-order="121">121</td><td class="num" data-order="336">336</td></tr><tr><td>Maranguape</td><td>Grande Fortaleza</td><td class="num" data-order="1478">1.478</td><td class="num" data-order="4727">4.727</td></tr><tr><td>Marco</td><td>Litoral Norte</td><td class="num" data-order="1031">1.031</td><td class="num" data-order="10336">10.336</td></tr><tr><td>Martinópole</td><td>Litoral Norte</td><td class="num" data-order="491">491</td><td class="num" data-order="1057">1.057</td></tr><tr><td>Massapê</td><td>Sertão de Sobral</td><td class="num" data-order="1126">1.126</td><td class="num" data-order="6014">6.014</td></tr><tr><td>Mauriti</td><td>Cariri</td><td class="num" data-order="2734">2.734</td><td class="num" data-order="30267">30.267</td></tr><tr><td>Meruoca</td><td>Sertão de Sobral</td><td class="num" data-order="893">893</td><td class="num" data-order="3060">3.060</td></tr><tr><td>Milagres</td><td>Cariri</td><td class="num" data-order="1802">1.802</td><td class="num" data-order="12642">12.642</td></tr><tr><td>Milhã</td><td>Sertão Central</td><td class="num" data-order="1399">1.399</td><td class="num" data-order="27949">27.949</td></tr><tr><td>Miraíma</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="494">494</td><td class="num" data-order="14794">14.794</td></tr><tr><td>Missão Velha</td><td>Cariri</td><td class="num" data-order="2878">2.878</td><td class="num" data-order="10328">10.328</td></tr><tr><td>Mombaça</td><td>Sertão Central</td><td class="num" data-order="4482">4.482</td><td class="num" data-order="75847">75.847</td></tr><tr><td>Monsenhor Tabosa</td><td>Sertão de Crateús</td><td class="num" data-order="1744">1.744</td><td class="num" data-order="33609">33.609</td></tr><tr><td>Morada Nova</td><td>Vale do Jaguaribe</td><td class="num" data-order="3861">3.861</td><td class="num" data-order="76178">76.178</td></tr><tr><td>Moraújo</td><td>Sertão de Sobral</td><td class="num" data-order="432">432</td><td class="num" data-order="4907">4.907</td></tr><tr><td>Morrinhos</td><td>Litoral Norte</td><td class="num" data-order="1201">1.201</td><td class="num" data-order="16340">16.340</td></tr><tr><td>Mucambo</td><td>Sertão de Sobral</td><td class="num" data-order="738">738</td><td class="num" data-order="2494">2.494</td></tr><tr><td>Mulungu</td><td>Maciço de Baturité</td><td class="num" data-order="807">807</td><td class="num" data-order="2111">2.111</td></tr><tr><td>Nova Olinda</td><td>Cariri</td><td class="num" data-order="723">723</td><td class="num" data-order="4434">4.434</td></tr><tr><td>Nova Russas</td><td>Sertão de Crateús</td><td class="num" data-order="1296">1.296</td><td class="num" data-order="22393">22.393</td></tr><tr><td>Novo Oriente</td><td>Sertão de Crateús</td><td class="num" data-order="3087">3.087</td><td class="num" data-order="32653">32.653</td></tr><tr><td>Ocara</td><td>Maciço de Baturité</td><td class="num" data-order="2317">2.317</td><td class="num" data-order="19405">19.405</td></tr><tr><td>Orós</td><td>Centro Sul</td><td class="num" data-order="1053">1.053</td><td class="num" data-order="15033">15.033</td></tr><tr><td>Pacajus</td><td>Grande Fortaleza</td><td class="num" data-order="986">986</td><td class="num" data-order="3589">3.589</td></tr><tr><td>Pacatuba</td><td>Grande Fortaleza</td><td class="num" data-order="456">456</td><td class="num" data-order="837">837</td></tr><tr><td>Pacoti</td><td>Maciço de Baturité</td><td class="num" data-order="600">600</td><td class="num" data-order="2033">2.033</td></tr><tr><td>Pacujá</td><td>Sertão de Sobral</td><td class="num" data-order="218">218</td><td class="num" data-order="269">269</td></tr><tr><td>Palhano</td><td>Vale do Jaguaribe</td><td class="num" data-order="826">826</td><td class="num" data-order="7134">7.134</td></tr><tr><td>Palmácia</td><td>Maciço de Baturité</td><td class="num" data-order="769">769</td><td class="num" data-order="2463">2.463</td></tr><tr><td>Paracuru</td><td>Grande Fortaleza</td><td class="num" data-order="460">460</td><td class="num" data-order="1694">1.694</td></tr><tr><td>Paraipaba</td><td>Grande Fortaleza</td><td class="num" data-order="1288">1.288</td><td class="num" data-order="4550">4.550</td></tr><tr><td>Parambu</td><td>Sertão dos Inhamuns</td><td class="num" data-order="3013">3.013</td><td class="num" data-order="62918">62.918</td></tr><tr><td>Paramoti</td><td>Sertão de Canindé</td><td class="num" data-order="621">621</td><td class="num" data-order="12271">12.271</td></tr><tr><td>Pedra Branca</td><td>Sertão Central</td><td class="num" data-order="3272">3.272</td><td class="num" data-order="52315">52.315</td></tr><tr><td>Penaforte</td><td>Cariri</td><td class="num" data-order="205">205</td><td class="num" data-order="3157">3.157</td></tr><tr><td>Pentecoste</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="1887">1.887</td><td class="num" data-order="19785">19.785</td></tr><tr><td>Pereiro</td><td>Vale do Jaguaribe</td><td class="num" data-order="1357">1.357</td><td class="num" data-order="5050">5.050</td></tr><tr><td>Pindoretama</td><td>Grande Fortaleza</td><td class="num" data-order="921">921</td><td class="num" data-order="816">816</td></tr><tr><td>Piquet Carneiro</td><td>Sertão Central</td><td class="num" data-order="1727">1.727</td><td class="num" data-order="26695">26.695</td></tr><tr><td>Pires Ferreira</td><td>Sertão de Sobral</td><td class="num" data-order="775">775</td><td class="num" data-order="4363">4.363</td></tr><tr><td>Poranga</td><td>Sertão de Crateús</td><td class="num" data-order="1435">1.435</td><td class="num" data-order="11537">11.537</td></tr><tr><td>Porteiras</td><td>Cariri</td><td class="num" data-order="1090">1.090</td><td class="num" data-order="6711">6.711</td></tr><tr><td>Potengi</td><td>Cariri</td><td class="num" data-order="735">735</td><td class="num" data-order="7798">7.798</td></tr><tr><td>Potiretama</td><td>Vale do Jaguaribe</td><td class="num" data-order="579">579</td><td class="num" data-order="14036">14.036</td></tr><tr><td>Quiterianópolis</td><td>Sertão dos Inhamuns</td><td class="num" data-order="2605">2.605</td><td class="num" data-order="38561">38.561</td></tr><tr><td>Quixadá</td><td>Sertão Central</td><td class="num" data-order="3192">3.192</td><td class="num" data-order="44884">44.884</td></tr><tr><td>Quixelô</td><td>Centro Sul</td><td class="num" data-order="1641">1.641</td><td class="num" data-order="20988">20.988</td></tr><tr><td>Quixeramobim</td><td>Sertão Central</td><td class="num" data-order="5465">5.465</td><td class="num" data-order="79179">79.179</td></tr><tr><td>Quixeré</td><td>Vale do Jaguaribe</td><td class="num" data-order="423">423</td><td class="num" data-order="4843">4.843</td></tr><tr><td>Redenção</td><td>Maciço de Baturité</td><td class="num" data-order="2443">2.443</td><td class="num" data-order="5378">5.378</td></tr><tr><td>Reriutaba</td><td>Sertão de Sobral</td><td class="num" data-order="1467">1.467</td><td class="num" data-order="7942">7.942</td></tr><tr><td>Russas</td><td>Vale do Jaguaribe</td><td class="num" data-order="2455">2.455</td><td class="num" data-order="17249">17.249</td></tr><tr><td>Saboeiro</td><td>Centro Sul</td><td class="num" data-order="1366">1.366</td><td class="num" data-order="40677">40.677</td></tr><tr><td>Salitre</td><td>Cariri</td><td class="num" data-order="2502">2.502</td><td class="num" data-order="30576">30.576</td></tr><tr><td>Santa Quitéria</td><td>Sertão de Crateús</td><td class="num" data-order="3215">3.215</td><td class="num" data-order="77483">77.483</td></tr><tr><td>Santana do Acaraú</td><td>Sertão de Sobral</td><td class="num" data-order="2274">2.274</td><td class="num" data-order="24861">24.861</td></tr><tr><td>Santana do Cariri</td><td>Cariri</td><td class="num" data-order="864">864</td><td class="num" data-order="8708">8.708</td></tr><tr><td>São Benedito</td><td>Serra da Ibiapaba</td><td class="num" data-order="2406">2.406</td><td class="num" data-order="6272">6.272</td></tr><tr><td>São Gonçalo do Amarante</td><td>Grande Fortaleza</td><td class="num" data-order="856">856</td><td class="num" data-order="7183">7.183</td></tr><tr><td>São João do Jaguaribe</td><td>Vale do Jaguaribe</td><td class="num" data-order="563">563</td><td class="num" data-order="8447">8.447</td></tr><tr><td>São Luís do Curu</td><td>Grande Fortaleza</td><td class="num" data-order="177">177</td><td class="num" data-order="973">973</td></tr><tr><td>Senador Pompeu</td><td>Sertão Central</td><td class="num" data-order="1766">1.766</td><td class="num" data-order="33853">33.853</td></tr><tr><td>Senador Sá</td><td>Sertão de Sobral</td><td class="num" data-order="481">481</td><td class="num" data-order="2533">2.533</td></tr><tr><td>Sobral</td><td>Sertão de Sobral</td><td class="num" data-order="3011">3.011</td><td class="num" data-order="22046">22.046</td></tr><tr><td>Solonópole</td><td>Sertão Central</td><td class="num" data-order="1843">1.843</td><td class="num" data-order="48860">48.860</td></tr><tr><td>Tabuleiro do Norte</td><td>Vale do Jaguaribe</td><td class="num" data-order="1197">1.197</td><td class="num" data-order="20447">20.447</td></tr><tr><td>Tamboril</td><td>Sertão de Crateús</td><td class="num" data-order="2297">2.297</td><td class="num" data-order="41244">41.244</td></tr><tr><td>Tarrafas</td><td>Cariri</td><td class="num" data-order="1061">1.061</td><td class="num" data-order="10242">10.242</td></tr><tr><td>Tauá</td><td>Sertão dos Inhamuns</td><td class="num" data-order="3884">3.884</td><td class="num" data-order="165379">165.379</td></tr><tr><td>Tejuçuoca</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="705">705</td><td class="num" data-order="18421">18.421</td></tr><tr><td>Tianguá</td><td>Serra da Ibiapaba</td><td class="num" data-order="2782">2.782</td><td class="num" data-order="10158">10.158</td></tr><tr><td>Trairi</td><td>Grande Fortaleza</td><td class="num" data-order="2329">2.329</td><td class="num" data-order="21287">21.287</td></tr><tr><td>Tururu</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="650">650</td><td class="num" data-order="5300">5.300</td></tr><tr><td>Ubajara</td><td>Serra da Ibiapaba</td><td class="num" data-order="2164">2.164</td><td class="num" data-order="5220">5.220</td></tr><tr><td>Umari</td><td>Centro Sul</td><td class="num" data-order="657">657</td><td class="num" data-order="6349">6.349</td></tr><tr><td>Umirim</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="775">775</td><td class="num" data-order="7486">7.486</td></tr><tr><td>Uruburetama</td><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="654">654</td><td class="num" data-order="3320">3.320</td></tr><tr><td>Uruoca</td><td>Litoral Norte</td><td class="num" data-order="967">967</td><td class="num" data-order="9408">9.408</td></tr><tr><td>Varjota</td><td>Sertão de Sobral</td><td class="num" data-order="458">458</td><td class="num" data-order="3460">3.460</td></tr><tr><td>Várzea Alegre</td><td>Cariri</td><td class="num" data-order="3179">3.179</td><td class="num" data-order="22738">22.738</td></tr><tr><td>Viçosa do Ceará</td><td>Serra da Ibiapaba</td><td class="num" data-order="4589">4.589</td><td class="num" data-order="22409">22.409</td></tr></tbody></table>
+</div>
+
+<div id="tab2" class="tab">
+  <table id="table2" class="display dataTable" cellspacing="0" width="100%"><thead><tr><th>Região de planejamento</th><th class="num">Estabelecimentos (Unidades)</th><th class="num">Área (Hectares)</th></tr></thead><tbody><tr><td>Cariri</td><td class="num" data-order="41971">41.971</td><td class="num" data-order="396247">396.247</td></tr><tr><td>Centro Sul</td><td class="num" data-order="23573">23.573</td><td class="num" data-order="325386">325.386</td></tr><tr><td>Grande Fortaleza</td><td class="num" data-order="18140">18.140</td><td class="num" data-order="84850">84.850</td></tr><tr><td>Litoral Leste</td><td class="num" data-order="7905">7.905</td><td class="num" data-order="61485">61.485</td></tr><tr><td>Litoral Norte</td><td class="num" data-order="19777">19.777</td><td class="num" data-order="114831">114.831</td></tr><tr><td>Litoral Oeste / Vale do Curu</td><td class="num" data-order="16938">16.938</td><td class="num" data-order="178057">178.057</td></tr><tr><td>Maciço de Baturité</td><td class="num" data-order="16702">16.702</td><td class="num" data-order="87077">87.077</td></tr><tr><td>Serra da Ibiapaba</td><td class="num" data-order="19382">19.382</td><td class="num" data-order="78535">78.535</td></tr><tr><td>Sertão Central</td><td class="num" data-order="28919">28.919</td><td class="num" data-order="490433">490.433</td></tr><tr><td>Sertão de Canindé</td><td class="num" data-order="13889">13.889</td><td class="num" data-order="183704">183.704</td></tr><tr><td>Sertão de Crateús</td><td class="num" data-order="28605">28.605</td><td class="num" data-order="487246">487.246</td></tr><tr><td>Sertão de Sobral</td><td class="num" data-order="17856">17.856</td><td class="num" data-order="128884">128.884</td></tr><tr><td>Sertão dos Inhamuns</td><td class="num" data-order="12354">12.354</td><td class="num" data-order="401101">401.101</td></tr><tr><td>Vale do Jaguaribe</td><td class="num" data-order="18505">18.505</td><td class="num" data-order="324772">324.772</td></tr></tbody></table>
+</div>
+
+<button id="download-excel" title="Baixar dados Excel">Baixar dados</button>
+
+<footer>
+  Fonte: Censo Agropecuário - IBGE, 2017
+</footer>
+
+<script>
+function showTab(tabId, btn) {
+  $('.tab').hide();
+  $('#' + tabId).show();
+  $('.tab-buttons button').removeClass('active');
+  $(btn).addClass('active');
+}
+
+$(document).ready(function() {
+  $('#table1').DataTable({
+    paging: false,
+    searching: true,
+    ordering: true,
+    info: false,
+    lengthChange: false,
+    language: {
+      search: "Pesquisar:"
+    }
+  });
+
+  $('#table2').DataTable({
+    paging: false,
+    searching: true,
+    ordering: true,
+    info: false,
+    lengthChange: false,
+    language: {
+      search: "Pesquisar:"
+    }
+  });
+
+  document.getElementById('download-excel').addEventListener('click', function () {
+    var wb = XLSX.utils.book_new();
+    var ws1 = XLSX.utils.table_to_sheet(document.getElementById('table1'));
+    var ws2 = XLSX.utils.table_to_sheet(document.getElementById('table2'));
+    XLSX.utils.book_append_sheet(wb, ws1, "Municípios");
+    XLSX.utils.book_append_sheet(wb, ws2, "Regiões");
+    XLSX.writeFile(wb, '2.xlsx');
+  });
+});
+</script>
+</body>
+</html>
